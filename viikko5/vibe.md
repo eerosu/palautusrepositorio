@@ -1,0 +1,5 @@
+Copilot päätyi jopa yllättävän toimivaan ratkaisuun, niin kuin tehtävänannossakin mainittiin. Muistan lukeneeni jostain, että Facebook valitsi värimaailmansa sen herättämän luottamuksen takia ja promptaamalla luotettavuutta herättävän designin, Copilot päätyi hyvin samankaltaiseen desginiin. Myös nappien värit olivat tutut, vihreä lisää ja punainen poistaa. Ratkaisu myös piti huolta ettei saldoja voinut ylittää tai viedä negatiiviseksi. Kokonaista varastoa poistaessa se myös varmisteli hyvin, että varmasti haluaa näin tehdä. README-tiedostossa tosin oli väärä osoite, kuten tehtävänannossakin varoiteltiin.
+
+Koodi oli paljon selkeämpää, kuin backend-koodi mitä on miniprojektissa yrittänyt luoda Copilotin avulla. Jolloin se tekee jopa pienistä pätkistä erittäin monimutkaisia ja vaikeasti seurattavia. Johtunee varmaan siitä, että avointa opetusdataa löytyy enemmän.
+
+En voi kyllä sanoa kauheasti oppineeni koodista mitään. Vähän sama, kuin menisi jollekin sivustolle ja copy-pastella varastaisi sieltä jotain designia tai tomintoja.
