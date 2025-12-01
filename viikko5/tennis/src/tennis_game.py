@@ -13,7 +13,7 @@ class TennisGame:
             self.match_score2 = self.match_score2 + 1
 
     def score_tied(self, score):
-        if score < 3 and score >= 0:
+        if score < 3:
             return f"{self.score_calls[score]}-All"
         return "Deuce"
 
