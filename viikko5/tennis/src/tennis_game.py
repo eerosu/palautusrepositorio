@@ -17,7 +17,7 @@ class TennisGame:
             return f"{self.score_calls[score]}-All"
         return "Deuce"
 
-    def advantage(self, score1, score2):
+    def endgame_score(self, score1, score2):
         difference = score1 - score2
         if difference == 1:
             return "Advantage player1"
@@ -33,7 +33,7 @@ class TennisGame:
             return self.score_tied(self.match_score1)
 
         elif self.match_score1 >= 4 or self.match_score2 >= 4:
-            return self.advantage(self.match_score1, self.match_score2)
+            return self.endgame_score(self.match_score1, self.match_score2)
 
         else:
             return f"{self.score_calls[self.match_score1]}-{self.score_calls[self.match_score2]}"
