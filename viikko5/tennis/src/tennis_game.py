@@ -20,13 +20,13 @@ class TennisGame:
     def advantage(self, score1, score2):
         difference = score1 - score2
         if difference == 1:
-            return "Advantage player1"
+            return f"Advantage {self.player1_name}"
         elif difference == -1:
-            return "Advantage player2"
+            return f"Advantage {self.player2_name}"
         elif difference >= 2:
-            return "Win for player1"
+            return f"Win for {self.player1_name}"
         else:
-            return "Win for player2"
+            return f"Win for {self.player2_name}"
 
     def get_score(self):
         if self.match_score1 == self.match_score2:
