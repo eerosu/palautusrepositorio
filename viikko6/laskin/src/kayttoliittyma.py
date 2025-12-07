@@ -13,6 +13,7 @@ class Kayttoliittyma:
     def __init__(self, sovelluslogiikka, root):
         self._sovelluslogiikka = sovelluslogiikka
         self._root = root
+        self._edellinen_komento = None
         self.komennot = {
             Komento.SUMMA: Summa(self._sovelluslogiikka, self._lue_syote),
             Komento.EROTUS: Erotus(self._sovelluslogiikka, self._lue_syote),
@@ -69,6 +70,10 @@ class Kayttoliittyma:
         komento_olio = self.komennot[komento]
         komento_olio.suorita()
 
+        if komento != Komento.KUMOA:
+            self._edellinen_komento = komento_olio
+            self.komennot[Komento.KUMOA].aseta_edellinen_komento(komento_olio)
+
         self._kumoa_painike["state"] = constants.NORMAL
 
         if self._sovelluslogiikka.arvo() == 0:
@@ -83,33 +88,58 @@ class Summa:
     def __init__(self, sovelluslogiikka, lue_syote):
         self._sovelluslogiikka = sovelluslogiikka
         self._lue_syote = lue_syote
+        self._edellinen_arvo = None
 
     def suorita(self):
+        self._edellinen_arvo = self._sovelluslogiikka.arvo()
         arvo = self._lue_syote()
         self._sovelluslogiikka.plus(arvo)
+
+    def kumoa(self):
+        if self._edellinen_arvo is not None:
+            self._sovelluslogiikka.aseta_arvo(self._edellinen_arvo)
 
 class Erotus:
     def __init__(self, sovelluslogiikka, lue_syote):
         self._sovelluslogiikka = sovelluslogiikka
         self._lue_syote = lue_syote
+        self._edellinen_arvo = None
 
     def suorita(self):
+        self._edellinen_arvo = self._sovelluslogiikka.arvo()
         arvo = self._lue_syote()
         self._sovelluslogiikka.miinus(arvo)
+
+    def kumoa(self):
+        if self._edellinen_arvo is not None:
+            self._sovelluslogiikka.aseta_arvo(self._edellinen_arvo)
 
 class Nollaus:
     def __init__(self, sovelluslogiikka, lue_syote):
         self._sovelluslogiikka = sovelluslogiikka
         self._lue_syote = lue_syote
+        self._edellinen_arvo = None
 
     def suorita(self):
         self._edellinen_arvo = self._sovelluslogiikka.arvo()
         self._sovelluslogiikka.nollaa()
 
+    def kumoa(self):
+        if self._edellinen_arvo is not None:
+            self._sovelluslogiikka.aseta_arvo(self._edellinen_arvo)
+
 class Kumoa:
     def __init__(self, sovelluslogiikka, lue_syote):
         self._sovelluslogiikka = sovelluslogiikka
         self._lue_syote = lue_syote
+        self._edellinen_komento = None
+
+    def aseta_edellinen_komento(self, komento):
+        self._edellinen_komento = komento
 
     def suorita(self):
+        if self._edellinen_komento:
+            self._edellinen_komento.kumoa()
+
+    def kumoa(self):
         pass
